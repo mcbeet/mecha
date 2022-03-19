@@ -533,7 +533,7 @@ yaml = ["PyYaml (>=5.2)"]
 
 [[package]]
 name = "python-semantic-release"
-version = "7.26.0"
+version = "7.27.0"
 description = "Automatic Semantic Versioning for Python projects"
 category = "dev"
 optional = false
@@ -545,7 +545,7 @@ click-log = ">=0.3,<1"
 dotty-dict = ">=1.3.0,<2"
 gitpython = ">=3.0.8,<4"
 invoke = ">=1.4.1,<2"
-python-gitlab = ">=1.10,<3"
+python-gitlab = ">=2,<4"
 requests = ">=2.25,<3"
 semver = ">=2.10,<3"
 tomlkit = "0.7.0"
@@ -793,7 +793,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "4490c295a90ea40f067eb371cae3e64fa19b76d94e70341e55d5215e3682f6e2"
+content-hash = "a405303a84007b95ea2c2c7faa923b2691d41188a4da11bd71ecdd5e44b2e355"
 
 [metadata.files]
 atomicwrites = [
@@ -1179,8 +1179,8 @@ python-gitlab = [
     {file = "python_gitlab-2.7.1-py3-none-any.whl", hash = "sha256:b1dbb66f53ad7cf33fbdce8e9e7e6a09b18c75a9c506b099af1f6f9191542cfb"},
 ]
 python-semantic-release = [
-    {file = "python-semantic-release-7.26.0.tar.gz", hash = "sha256:9876885cf16af43d75610b4f46e27d5ad0f699c7d574dcfe0c6b62ab7d43458d"},
-    {file = "python_semantic_release-7.26.0-py3-none-any.whl", hash = "sha256:ddd7e2460c526264148d534658ea35aee265d615fe110cdf4e16abc6ffc22e50"},
+    {file = "python-semantic-release-7.27.0.tar.gz", hash = "sha256:d115360703cc66a757f650f795fc1d8cd7fdf7688cb8645a36a713f5144b01ce"},
+    {file = "python_semantic_release-7.27.0-py3-none-any.whl", hash = "sha256:dd95785719b5c04fc63c29c2e363735d4d622b713b2b99b41bb0c6ded57311de"},
 ]
 pywin32-ctypes = [
     {file = "pywin32-ctypes-0.2.0.tar.gz", hash = "sha256:24ffc3b341d457d48e8922352130cf2644024a4ff09762a2261fd34c36ee5942"},
