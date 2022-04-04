@@ -533,7 +533,7 @@ yaml = ["PyYaml (>=5.2)"]
 
 [[package]]
 name = "python-semantic-release"
-version = "7.26.0"
+version = "7.27.1"
 description = "Automatic Semantic Versioning for Python projects"
 category = "dev"
 optional = false
@@ -545,10 +545,10 @@ click-log = ">=0.3,<1"
 dotty-dict = ">=1.3.0,<2"
 gitpython = ">=3.0.8,<4"
 invoke = ">=1.4.1,<2"
-python-gitlab = ">=1.10,<3"
+python-gitlab = ">=2,<4"
 requests = ">=2.25,<3"
 semver = ">=2.10,<3"
-tomlkit = "0.7.0"
+tomlkit = ">=0.10.0,<0.11.0"
 twine = ">=3,<4"
 
 [package.extras]
@@ -703,11 +703,11 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "tomlkit"
-version = "0.7.0"
+version = "0.10.1"
 description = "Style preserving TOML library"
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.6,<4.0"
 
 [[package]]
 name = "tqdm"
@@ -793,7 +793,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "4490c295a90ea40f067eb371cae3e64fa19b76d94e70341e55d5215e3682f6e2"
+content-hash = "535474cd9c455777c3a5c5371bf931ba97be4d6b3e1d465cd8e44f9c968e9ac6"
 
 [metadata.files]
 atomicwrites = [
@@ -1179,8 +1179,8 @@ python-gitlab = [
     {file = "python_gitlab-2.7.1-py3-none-any.whl", hash = "sha256:b1dbb66f53ad7cf33fbdce8e9e7e6a09b18c75a9c506b099af1f6f9191542cfb"},
 ]
 python-semantic-release = [
-    {file = "python-semantic-release-7.26.0.tar.gz", hash = "sha256:9876885cf16af43d75610b4f46e27d5ad0f699c7d574dcfe0c6b62ab7d43458d"},
-    {file = "python_semantic_release-7.26.0-py3-none-any.whl", hash = "sha256:ddd7e2460c526264148d534658ea35aee265d615fe110cdf4e16abc6ffc22e50"},
+    {file = "python-semantic-release-7.27.1.tar.gz", hash = "sha256:a7a11a9250e392ee699408dca916b11789be07656143746084331b4b1d88bde5"},
+    {file = "python_semantic_release-7.27.1-py3-none-any.whl", hash = "sha256:20c804784a3e64a5d072704e2d18e0c858092e95c4a98b385e93fcab30998439"},
 ]
 pywin32-ctypes = [
     {file = "pywin32-ctypes-0.2.0.tar.gz", hash = "sha256:24ffc3b341d457d48e8922352130cf2644024a4ff09762a2261fd34c36ee5942"},
@@ -1266,8 +1266,8 @@ tomli = [
     {file = "tomli-1.2.1.tar.gz", hash = "sha256:a5b75cb6f3968abb47af1b40c1819dc519ea82bcc065776a866e8d74c5ca9442"},
 ]
 tomlkit = [
-    {file = "tomlkit-0.7.0-py2.py3-none-any.whl", hash = "sha256:6babbd33b17d5c9691896b0e68159215a9387ebfa938aa3ac42f4a4beeb2b831"},
-    {file = "tomlkit-0.7.0.tar.gz", hash = "sha256:ac57f29693fab3e309ea789252fcce3061e19110085aa31af5446ca749325618"},
+    {file = "tomlkit-0.10.1-py3-none-any.whl", hash = "sha256:3eba517439dcb2f84cf39f4f85fd2c3398309823a3c75ac3e73003638daf7915"},
+    {file = "tomlkit-0.10.1.tar.gz", hash = "sha256:3c517894eadef53e9072d343d37e4427b8f0b6200a70b7c9a19b2ebd1f53b951"},
 ]
 tqdm = [
     {file = "tqdm-4.60.0-py2.py3-none-any.whl", hash = "sha256:daec693491c52e9498632dfbe9ccfc4882a557f5fa08982db1b4d3adbe0887c3"},
