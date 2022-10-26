@@ -1,0 +1,5 @@
+{
+  "name": "  - hey -  thing !  ",
+  "output": "build",
+  "pipeline": ["my_script"]
+}
