@@ -255,15 +255,10 @@
     "return": {
       "type": "literal",
       "children": {
-        "run": {
-          "type": "literal",
-          "children": {
-            "commands": {
-              "type": "argument",
-              "parser": "mecha:nested_root",
-              "executable": true
-            }
-          }
+        "commands": {
+          "type": "argument",
+          "parser": "mecha:nested_root",
+          "executable": true
         }
       }
     }

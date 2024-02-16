@@ -166,7 +166,7 @@ class NestedCommandsTransformer(MutatingReducer):
         return node
 
     @rule(AstCommand, identifier="execute:commands")
-    @rule(AstCommand, identifier="return:run:commands")
+    @rule(AstCommand, identifier="return:commands")
     def nesting_execute_commands(self, node: AstCommand):
         root = cast(AstRoot, node.arguments[0])
 

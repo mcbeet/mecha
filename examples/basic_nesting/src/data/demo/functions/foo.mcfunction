@@ -207,8 +207,8 @@ function demo:ret2:
 return run say inline by default
 return run function demo:named_return_run:
     say named function
-return run:
+return:
     say inlined command
-return run:
+return:
     say anonymous function 1
     say anonymous function 2
