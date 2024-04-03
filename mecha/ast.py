@@ -56,6 +56,9 @@ __all__ = [
     "AstBlock",
     "AstItemComponent",
     "AstItem",
+    "AstItemTest",
+    "AstItemTestGroup",
+    "AstItemPredicate",
     "AstItemSlot",
     "AstItemSlots",
     "AstRange",
@@ -919,6 +922,32 @@ class AstItem(AstNode):
 
     identifier: AstResourceLocation = required_field()
     components: AstChildren[AstItemComponent] = AstChildren()
+    data_tags: Optional[AstNbtCompound] = None
+
+
+@dataclass(frozen=True, slots=True)
+class AstItemTest(AstNode):
+    """Ast item test node."""
+
+    inverted: bool = False
+    predicate: bool = False
+    key: AstResourceLocation = required_field()
+    value: Optional[AstNbt] = None
+
+
+@dataclass(frozen=True, slots=True)
+class AstItemTestGroup(AstNode):
+    """Ast item test group node."""
+
+    all_of_tests: AstChildren[AstItemTest] = AstChildren()
+
+
+@dataclass(frozen=True, slots=True)
+class AstItemPredicate(AstNode):
+    """Ast item predicate node."""
+
+    identifier: Union[AstResourceLocation, AstWildcard] = required_field()
+    any_of_tests: AstChildren[AstItemTestGroup] = AstChildren()
     data_tags: Optional[AstNbtCompound] = None
 
 

@@ -111,8 +111,11 @@ from .ast import (
     AstItem,
     AstItemComponent,
     AstItemParticleParameters,
+    AstItemPredicate,
     AstItemSlot,
     AstItemSlots,
+    AstItemTest,
+    AstItemTestGroup,
     AstJson,
     AstJsonArray,
     AstJsonObject,
@@ -272,18 +275,15 @@ def get_default_parsers() -> Dict[str, Parser]:
             ),
             data_tags_parser=delegate("adjacent_nbt_compound"),
         ),
-        "item_predicate": ItemParser(
-            resource_location_parser=delegate("resource_location_or_tag"),
-            components_parser=AdjacentConstraint(
-                parser=MultilineParser(
-                    BracketedKeyValuePairsParser(
-                        node_type=AstItemComponent,
-                        key_parser=delegate("resource_location"),
-                        value_parser=delegate("nbt"),
-                    )
-                ),
-                hint=r"\[",
+        "item_predicate": ItemPredicateParser(
+            resource_location_parser=AlternativeParser(
+                [
+                    delegate("resource_location_or_tag"),
+                    delegate("wildcard"),
+                ]
             ),
+            key_parser=delegate("resource_location"),
+            value_parser=delegate("nbt"),
             data_tags_parser=delegate("adjacent_nbt_compound"),
         ),
         "item_slot": BasicLiteralParser(AstItemSlot),
@@ -1441,6 +1441,62 @@ class ItemParser:
             data_tags=data_tags,
         )
         return set_location(node, location, data_tags if data_tags else end_location)
+
+
+@dataclass
+class ItemPredicateParser:
+    """Parser for minecraft item predicates."""
+
+    resource_location_parser: Parser
+    key_parser: Parser
+    value_parser: Parser
+    data_tags_parser: Parser
+
+    def __call__(self, stream: TokenStream) -> AstItemPredicate:
+        identifier = self.resource_location_parser(stream)
+
+        any_of_tests: List[AstItemTestGroup] = []
+        all_of_tests: List[AstItemTest] = []
+
+        with stream.syntax(
+            bracket=r"\[|\]",
+            pipe=r"\|",
+            equal=r"=",
+            tilde=r"~",
+            comma=r",",
+            exclamation=r"!",
+        ):
+            if stream.get(("bracket", "[")):
+
+                for _ in stream.peek_until(("bracket", "]")):
+                    inverted = stream.get("exclamation") is not None
+                    key_node = self.key_parser(stream)
+                    predicate = stream.get("tilde") is not None
+                    has_value = predicate or stream.get("equal") is not None
+                    value_node = self.value_parser(stream) if has_value else None
+
+                    test_node = AstItemTest(inverted=inverted, predicate=predicate, key=key_node, value=value_node)
+                    test_node = set_location(test_node, key_node, value_node)
+                    all_of_tests.append(test_node)
+
+                    if stream.get("comma"):
+                        continue
+                    elif stream.get("pipe"):
+                        any_of_tests.append(AstItemTestGroup(all_of_tests=AstChildren(all_of_tests)))
+                        all_of_tests = []
+                    else:
+                        stream.expect(("bracket", "]"))
+                        if len(all_of_tests) > 0:
+                            any_of_tests.append(AstItemTestGroup(all_of_tests=AstChildren(all_of_tests)))
+                        break
+
+        data_tags = self.data_tags_parser(stream)
+
+        return AstItemPredicate(
+            identifier=identifier,
+            any_of_tests=AstChildren(any_of_tests),
+            data_tags=data_tags,
+        )
 
 
 @dataclass

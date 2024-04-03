@@ -21,6 +21,9 @@ from .ast import (
     AstCoordinate,
     AstItem,
     AstItemComponent,
+    AstItemPredicate,
+    AstItemTest,
+    AstItemTestGroup,
     AstJson,
     AstLiteral,
     AstMacroLine,
@@ -265,6 +268,39 @@ class Serializer(Visitor):
         yield node.identifier
         if node.components:
             yield from self.collection(node.components, "[]", result)
+        if node.data_tags:
+            yield node.data_tags
+
+    @rule(AstItemTest)
+    def item_test(self, node: AstItemTest, result: List[str]):
+        if node.inverted:
+            result.append("!")
+        yield node.key
+        if node.value:
+            result.append("~" if node.predicate else "=")
+            yield node.value
+
+    @rule(AstItemTestGroup)
+    def item_test_group(self, node: AstItemTestGroup, result: List[str]):
+        comma = "," if self.formatting.cmd_compact else ", "
+        sep = ""
+        for test in node.all_of_tests:
+            result.append(sep)
+            sep = comma
+            yield test
+
+    @rule(AstItemPredicate)
+    def item_predicate(self, node: AstItemPredicate, result: List[str]):
+        yield node.identifier
+        if node.any_of_tests:
+            result.append("[")
+            pipe = "|" if self.formatting.cmd_compact else " | "
+            sep = ""
+            for test_group in node.any_of_tests:
+                result.append(sep)
+                sep = pipe
+                yield test_group
+            result.append("]")
         if node.data_tags:
             yield node.data_tags
 
