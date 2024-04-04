@@ -21,9 +21,7 @@ from .ast import (
     AstCoordinate,
     AstItem,
     AstItemComponent,
-    AstItemPredicate,
-    AstItemTest,
-    AstItemTestGroup,
+    AstItemComponentGroup,
     AstJson,
     AstLiteral,
     AstMacroLine,
@@ -260,19 +258,7 @@ class Serializer(Visitor):
             yield node.data_tags
 
     @rule(AstItemComponent)
-    def item_component(self, node: AstItem, result: List[str]):
-        yield from self.key_value(node, "=", result)
-
-    @rule(AstItem)
-    def item(self, node: AstItem, result: List[str]):
-        yield node.identifier
-        if node.components:
-            yield from self.collection(node.components, "[]", result)
-        if node.data_tags:
-            yield node.data_tags
-
-    @rule(AstItemTest)
-    def item_test(self, node: AstItemTest, result: List[str]):
+    def item_component(self, node: AstItemComponent, result: List[str]):
         if node.inverted:
             result.append("!")
         yield node.key
@@ -280,26 +266,29 @@ class Serializer(Visitor):
             result.append("~" if node.predicate else "=")
             yield node.value
 
-    @rule(AstItemTestGroup)
-    def item_test_group(self, node: AstItemTestGroup, result: List[str]):
+    @rule(AstItemComponentGroup)
+    def item_component_group(self, node: AstItemComponentGroup, result: List[str]):
         comma = "," if self.formatting.cmd_compact else ", "
         sep = ""
-        for test in node.all_of_tests:
+        for component in node.components:
             result.append(sep)
             sep = comma
-            yield test
+            yield component
 
-    @rule(AstItemPredicate)
-    def item_predicate(self, node: AstItemPredicate, result: List[str]):
+    @rule(AstItem)
+    def item(self, node: AstItem, result: List[str]):
         yield node.identifier
-        if node.any_of_tests:
+        if node.components:
             result.append("[")
-            pipe = "|" if self.formatting.cmd_compact else " | "
+            if len(node.components) > 0 and isinstance(node.components[0], AstItemComponentGroup):
+                pipe = "|" if self.formatting.cmd_compact else " | "
+            else:
+                pipe = "," if self.formatting.cmd_compact else ", "
             sep = ""
-            for test_group in node.any_of_tests:
+            for component in node.components:
                 result.append(sep)
                 sep = pipe
-                yield test_group
+                yield component
             result.append("]")
         if node.data_tags:
             yield node.data_tags
