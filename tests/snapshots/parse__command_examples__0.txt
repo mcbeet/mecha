@@ -7315,6 +7315,8 @@
             <class 'mecha.ast.AstItemComponent'>
               location: SourceLocation(pos=8626, lineno=212, colno=24)
               end_location: SourceLocation(pos=8635, lineno=212, colno=33)
+              inverted: False
+              predicate: False
               key:
                 <class 'mecha.ast.AstResourceLocation'>
                   location: SourceLocation(pos=8626, lineno=212, colno=24)
@@ -7353,6 +7355,8 @@
             <class 'mecha.ast.AstItemComponent'>
               location: SourceLocation(pos=8660, lineno=213, colno=24)
               end_location: SourceLocation(pos=8669, lineno=213, colno=33)
+              inverted: False
+              predicate: False
               key:
                 <class 'mecha.ast.AstResourceLocation'>
                   location: SourceLocation(pos=8660, lineno=213, colno=24)
@@ -7408,6 +7412,8 @@
             <class 'mecha.ast.AstItemComponent'>
               location: SourceLocation(pos=8703, lineno=214, colno=23)
               end_location: SourceLocation(pos=8711, lineno=214, colno=31)
+              inverted: False
+              predicate: False
               key:
                 <class 'mecha.ast.AstResourceLocation'>
                   location: SourceLocation(pos=8703, lineno=214, colno=23)
@@ -7423,6 +7429,8 @@
             <class 'mecha.ast.AstItemComponent'>
               location: SourceLocation(pos=8712, lineno=214, colno=32)
               end_location: SourceLocation(pos=8725, lineno=214, colno=45)
+              inverted: False
+              predicate: False
               key:
                 <class 'mecha.ast.AstResourceLocation'>
                   location: SourceLocation(pos=8712, lineno=214, colno=32)
@@ -7502,6 +7510,8 @@
             <class 'mecha.ast.AstItemComponent'>
               location: SourceLocation(pos=8766, lineno=216, colno=15)
               end_location: SourceLocation(pos=8789, lineno=216, colno=38)
+              inverted: False
+              predicate: False
               key:
                 <class 'mecha.ast.AstResourceLocation'>
                   location: SourceLocation(pos=8766, lineno=216, colno=15)
@@ -7553,6 +7563,8 @@
             <class 'mecha.ast.AstItemComponent'>
               location: SourceLocation(pos=8816, lineno=217, colno=26)
               end_location: SourceLocation(pos=8824, lineno=217, colno=34)
+              inverted: False
+              predicate: False
               key:
                 <class 'mecha.ast.AstResourceLocation'>
                   location: SourceLocation(pos=8816, lineno=217, colno=26)
@@ -7591,6 +7603,8 @@
             <class 'mecha.ast.AstItemComponent'>
               location: SourceLocation(pos=8848, lineno=218, colno=23)
               end_location: SourceLocation(pos=8879, lineno=218, colno=54)
+              inverted: False
+              predicate: False
               key:
                 <class 'mecha.ast.AstResourceLocation'>
                   location: SourceLocation(pos=8848, lineno=218, colno=23)
