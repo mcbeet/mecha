@@ -483,8 +483,12 @@ def get_default_parsers() -> Dict[str, Parser]:
         "command:argument:minecraft:float_range": delegate("range"),
         "command:argument:minecraft:function": delegate("resource_location_or_tag"),
         "command:argument:minecraft:loot_table": delegate("resource_location_or_nbt"),
-        "command:argument:minecraft:loot_predicate": delegate("resource_location_or_nbt"),
-        "command:argument:minecraft:loot_modifier": delegate("resource_location_or_nbt"),
+        "command:argument:minecraft:loot_predicate": delegate(
+            "resource_location_or_nbt"
+        ),
+        "command:argument:minecraft:loot_modifier": delegate(
+            "resource_location_or_nbt"
+        ),
         "command:argument:minecraft:game_profile": delegate("game_profile"),
         "command:argument:minecraft:gamemode": delegate("gamemode"),
         "command:argument:minecraft:heightmap": delegate("heightmap"),
@@ -1461,7 +1465,7 @@ class ComponentPredicateParser:
     key_parser: Parser
     value_parser: Parser
 
-    def __call__(self, stream: TokenStream) -> AstChildren[Union[AstItemComponent, AstItemComponentGroup]]:
+    def __call__(self, stream: TokenStream) -> AstChildren[AstNode]:
         groups: List[AstItemComponentGroup] = []
         pairs: List[AstItemComponent] = []
 
@@ -1482,19 +1486,26 @@ class ComponentPredicateParser:
                 has_value = predicate or stream.get("equal") is not None
                 value_node = self.value_parser(stream) if has_value else None
 
-                pair = AstItemComponent(inverted=inverted, predicate=predicate, key=key_node, value=value_node)
+                pair = AstItemComponent(
+                    inverted=inverted,
+                    predicate=predicate,
+                    key=key_node,
+                    value=value_node,
+                )
                 pair = set_location(pair, key_node, value_node)
                 pairs.append(pair)
 
                 if stream.get("comma"):
                     continue
                 elif stream.get("pipe"):
-                    groups.append(AstItemComponentGroup(components=AstChildren(pairs)))
+                    group = AstItemComponentGroup(components=AstChildren(pairs))
+                    groups.append(group)
                     pairs = []
                 else:
                     stream.expect(("bracket", "]"))
                     if len(pairs) > 0:
-                        groups.append(AstItemComponentGroup(components=AstChildren(pairs)))
+                        group = AstItemComponentGroup(components=AstChildren(pairs))
+                        groups.append(group)
                     break
 
         if len(groups) == 0:

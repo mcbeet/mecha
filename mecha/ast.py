@@ -928,7 +928,9 @@ class AstItem(AstNode):
     """Ast item node."""
 
     identifier: Optional[AstResourceLocation] = None
-    components: AstChildren[Union[AstItemComponent, AstItemComponentGroup]] = AstChildren()
+    components: AstChildren[Union[AstItemComponent, AstItemComponentGroup]] = (
+        AstChildren()
+    )
     data_tags: Optional[AstNbtCompound] = None
 
 

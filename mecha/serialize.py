@@ -280,7 +280,7 @@ class Serializer(Visitor):
         yield node.identifier
         if node.components:
             result.append("[")
-            if len(node.components) > 0 and isinstance(node.components[0], AstItemComponentGroup):
+            if isinstance(node.components[0], AstItemComponentGroup):
                 pipe = "|" if self.formatting.cmd_compact else " | "
             else:
                 pipe = "," if self.formatting.cmd_compact else ", "
