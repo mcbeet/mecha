@@ -277,7 +277,10 @@ class Serializer(Visitor):
 
     @rule(AstItem)
     def item(self, node: AstItem, result: List[str]):
-        yield node.identifier
+        if node.identifier:
+            yield node.identifier
+        else:
+            result.append("*")
         if node.components:
             result.append("[")
             if isinstance(node.components[0], AstItemComponentGroup):
