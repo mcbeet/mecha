@@ -13,6 +13,7 @@
   "advancement:revoke:targets:until:advancement",
   "attribute:target:attribute:base:get",
   "attribute:target:attribute:base:get:scale",
+  "attribute:target:attribute:base:reset",
   "attribute:target:attribute:base:set:value",
   "attribute:target:attribute:get",
   "attribute:target:attribute:get:scale",
