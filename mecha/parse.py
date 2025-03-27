@@ -184,7 +184,7 @@ from .ast import (
 from .config import CommandTree
 from .error import MechaError
 from .spec import CommandSpec, Parser
-from .utils import JsonQuoteHelper, QuoteHelper, string_to_number
+from .utils import JsonQuoteHelper, NbtQuoteHelper, QuoteHelper, string_to_number
 
 NUMBER_PATTERN: str = r"-?(?:\d+\.?\d*|\.\d+)"
 
@@ -493,8 +493,8 @@ def get_default_parsers() -> Dict[str, Parser]:
             ]
         ),
         "command:argument:minecraft:column_pos": delegate("column_pos"),
-        "command:argument:minecraft:component": MultilineParser(delegate("json")),
-        "command:argument:minecraft:style": MultilineParser(delegate("json")),
+        "command:argument:minecraft:component": MultilineParser(delegate("nbt")),
+        "command:argument:minecraft:style": MultilineParser(delegate("nbt")),
         "command:argument:minecraft:dimension": delegate("resource_location"),
         "command:argument:minecraft:entity": delegate("entity"),
         "command:argument:minecraft:entity_anchor": delegate("entity_anchor"),
@@ -1165,13 +1165,7 @@ class NbtParser:
         }
     )
 
-    quote_helper: QuoteHelper = field(
-        default_factory=lambda: QuoteHelper(
-            escape_sequences={
-                r"\\": "\\",
-            }
-        )
-    )
+    quote_helper: QuoteHelper = field(default_factory=NbtQuoteHelper)
 
     def __post_init__(self):
         self.compound_entry_parser = self.parse_compound_entry
