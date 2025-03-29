@@ -32,12 +32,17 @@ from .ast import (
     AstMacroLineText,
     AstMacroLineVariable,
     AstMessage,
-    AstNbt,
     AstNbtBool,
+    AstNbtByteArray,
     AstNbtCompound,
+    AstNbtCompoundKey,
+    AstNbtIntArray,
+    AstNbtList,
+    AstNbtLongArray,
     AstNbtPath,
     AstNbtPathKey,
     AstNbtPathSubscript,
+    AstNbtValue,
     AstNode,
     AstNumber,
     AstParticle,
@@ -64,6 +69,7 @@ from .spec import CommandSpec
 from .utils import QuoteHelper, number_to_string
 
 REGEX_COMMENTS = re.compile(r"^(?:(\s*#.*)|.+)", re.MULTILINE)
+UNQUOTED_COMPOUND_KEY = re.compile(r"^[a-zA-Z0-9._+-]+$")
 
 
 class FormattingOptions(BaseModel):
@@ -237,13 +243,64 @@ class Serializer(Visitor):
             )
         )
 
-    @rule(AstNbt)
-    def nbt(self, node: AstNbt, result: List[str]):
+    @rule(AstNbtValue)
+    def nbt_value(self, node: AstNbtValue, result: List[str]):
         result.append(node.evaluate().snbt(compact=self.formatting.nbt_compact))
 
     @rule(AstNbtBool)
     def nbt_bool(self, node: AstNbtBool, result: List[str]):
         result.append("true" if node.value else "false")
+
+    @rule(AstNbtList)
+    def nbt_list(self, node: AstNbtList, result: List[str]):
+        result.append("[")
+        comma = "," if self.formatting.nbt_compact else ", "
+        sep = ""
+        for element in node.elements:
+            result.append(sep)
+            sep = comma
+            yield element
+        result.append("]")
+
+    @rule(AstNbtCompoundKey)
+    def nbt_compound_key(self, node: AstNbtCompoundKey, result: List[str]):
+        if UNQUOTED_COMPOUND_KEY.match(node.value):
+            result.append(node.value)
+        else:
+            result.append(self.quote_helper.quote_string(node.value))
+
+    @rule(AstNbtCompound)
+    def nbt_compound(self, node: AstNbtCompound, result: List[str]):
+        result.append("{")
+        comma, colon = (",", ":") if self.formatting.nbt_compact else (", ", ": ")
+        sep = ""
+        for entry in node.entries:
+            result.append(sep)
+            sep = comma
+            yield entry.key
+            result.append(colon)
+            yield entry.value
+        result.append("}")
+
+    @rule(AstNbtByteArray)
+    @rule(AstNbtIntArray)
+    @rule(AstNbtLongArray)
+    def nbt_array(
+        self,
+        node: Union[AstNbtByteArray, AstNbtIntArray, AstNbtLongArray],
+        result: List[str],
+    ):
+        result.append("[")
+        result.append(node.array_prefix)
+        semicolon = ";" if self.formatting.nbt_compact else "; "
+        result.append(semicolon)
+        comma = "," if self.formatting.nbt_compact else ", "
+        sep = ""
+        for element in node.elements:
+            result.append(sep)
+            sep = comma
+            yield element
+        result.append("]")
 
     @rule(AstResourceLocation)
     def resource_location(self, node: AstResourceLocation, result: List[str]):

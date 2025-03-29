@@ -2,6 +2,7 @@ __all__ = [
     "QuoteHelper",
     "QuoteHelperWithUnicode",
     "JsonQuoteHelper",
+    "NbtQuoteHelper",
     "InvalidEscapeSequence",
     "normalize_whitespace",
     "string_to_number",
@@ -133,6 +134,23 @@ class JsonQuoteHelper(QuoteHelperWithUnicode):
             r"\f": "\f",
             r"\n": "\n",
             r"\r": "\r",
+            r"\t": "\t",
+        }
+    )
+
+
+@dataclass
+class NbtQuoteHelper(QuoteHelperWithUnicode):
+    """Quote helper used for snbt."""
+
+    escape_sequences: Dict[str, str] = field(
+        default_factory=lambda: {
+            r"\\": "\\",
+            r"\b": "\b",
+            r"\f": "\f",
+            r"\n": "\n",
+            r"\r": "\r",
+            r"\s": " ",
             r"\t": "\t",
         }
     )
