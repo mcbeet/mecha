@@ -25,7 +25,7 @@ execute as @a run function demo:with_tag
 `@function demo:implicit_execute`
 
 ```mcfunction
-execute as @a at @s align xyz run summon armor_stand ~ ~ ~ {Tags: ["position_history", "new"], Invisible: 1b, Marker: 1b}
+execute as @a at @s align xyz run summon armor_stand ~ ~ ~ {Tags: ['position_history', 'new'], Invisible: 1b, Marker: 1b}
 execute if score @s obj matches 2 run say hi
 ```
 
@@ -33,7 +33,7 @@ execute if score @s obj matches 2 run say hi
 
 ```mcfunction
 tellraw @p {"text": "hello", "color": "red"}
-data modify storage imp:io words set value ["alpha", "beta", "gamma", "delta"]
+data modify storage imp:io words set value ['alpha', 'beta', 'gamma', 'delta']
 ```
 
 `@function demo:nesting`

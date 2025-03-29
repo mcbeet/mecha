@@ -4,7 +4,7 @@ minecraft:item_stack 0 2
 ---
 stick{foo:bar}
 ---
-stick{foo: "bar"}
+stick{foo: 'bar'}
 ---
 <class 'mecha.ast.AstItemStack'>
   location: SourceLocation(pos=0, lineno=1, colno=1)
