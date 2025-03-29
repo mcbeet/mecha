@@ -66,7 +66,7 @@ from .ast import (
 from .database import CompilationDatabase
 from .dispatch import Visitor, rule
 from .spec import CommandSpec
-from .utils import QuoteHelper, number_to_string
+from .utils import NbtQuoteHelper, QuoteHelper, number_to_string
 
 REGEX_COMMENTS = re.compile(r"^(?:(\s*#.*)|.+)", re.MULTILINE)
 UNQUOTED_COMPOUND_KEY = re.compile(r"^[a-zA-Z0-9._+-]+$")
@@ -103,6 +103,7 @@ class Serializer(Visitor):
             }
         )
     )
+    nbt_quote_helper: QuoteHelper = field(default_factory=NbtQuoteHelper)
 
     def __call__(self, node: AstNode, **kwargs: Any) -> str:  # type: ignore
         result: List[str] = []
@@ -245,7 +246,10 @@ class Serializer(Visitor):
 
     @rule(AstNbtValue)
     def nbt_value(self, node: AstNbtValue, result: List[str]):
-        result.append(node.evaluate().snbt(compact=self.formatting.nbt_compact))
+        if isinstance(node.value, str):
+            result.append(self.nbt_quote_helper.quote_string(node.value))
+        else:
+            result.append(node.evaluate().snbt(compact=self.formatting.nbt_compact))
 
     @rule(AstNbtBool)
     def nbt_bool(self, node: AstNbtBool, result: List[str]):
