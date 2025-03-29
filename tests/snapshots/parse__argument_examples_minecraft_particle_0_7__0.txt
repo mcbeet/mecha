@@ -4,7 +4,7 @@ minecraft:particle 0 7
 ---
 item minecraft:apple{foo: bar}
 ---
-item minecraft:apple{foo: "bar"}
+item minecraft:apple{foo: 'bar'}
 ---
 <class 'mecha.ast.AstParticle'>
   location: SourceLocation(pos=0, lineno=1, colno=1)
