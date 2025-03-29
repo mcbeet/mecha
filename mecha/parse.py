@@ -1228,24 +1228,16 @@ class NbtParser:
                         node = AstNbtLongArray(elements=AstChildren(elements))
                         element_type = Long  # type: ignore
                         msg = "Expected all elements to be long integers."
+
+                    node = set_location(node, array, stream.current)
+
+                    for element in node.elements:
+                        if isinstance(element, AstNbtValue):
+                            if type(element.value) is not element_type:
+                                raise element.emit_error(InvalidSyntax(msg))
                 else:
                     node = AstNbtList(elements=AstChildren(elements))
-                    element_type = None
-                    msg = "Expected all elements to have the same type."
-
-                node = set_location(node, bracket or array, stream.current)
-
-                for element in node.elements:
-                    if isinstance(element, AstNbtValue):
-                        if not element_type:
-                            element_type = type(element.value)
-                        elif type(element.value) is not element_type:
-                            raise element.emit_error(InvalidSyntax(msg))
-                    elif isinstance(element, AstNbt):  # type: ignore
-                        if not element_type:
-                            element_type = type(element)
-                        elif type(element) is not element_type:
-                            raise element.emit_error(InvalidSyntax(msg))
+                    node = set_location(node, bracket, stream.current)
 
                 return node
 
