@@ -4,7 +4,7 @@ minecraft:item_predicate 0 4
 ---
 stick[custom_data={foo:bar}]
 ---
-stick[custom_data={foo: 'bar'}]
+stick[custom_data={foo: "bar"}]
 ---
 <class 'mecha.ast.AstItemPredicate'>
   location: SourceLocation(pos=0, lineno=1, colno=1)

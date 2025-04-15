@@ -18,7 +18,7 @@
 `@function demo:foo`
 
 ```mcfunction
-function demo:thing {name: 'steve', eval: 'kill @a'}
+function demo:thing {name: "steve", eval: "kill @a"}
 ```
 
 `@function demo:thing`

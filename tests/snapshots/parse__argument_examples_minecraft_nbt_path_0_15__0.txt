@@ -4,7 +4,7 @@ minecraft:nbt_path 0 15
 ---
 foo{bar:"baz"}
 ---
-foo{bar: 'baz'}
+foo{bar: "baz"}
 ---
 <class 'mecha.ast.AstNbtPath'>
   location: SourceLocation(pos=0, lineno=1, colno=1)

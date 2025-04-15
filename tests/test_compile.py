@@ -52,7 +52,7 @@ def dummy_transform(mc: Mecha):
 
 def test_string(mc: Mecha, dummy_transform: Any):
     function = mc.compile("say hello world")
-    assert function.text == "tellraw @a 'hello world'\n"
+    assert function.text == 'tellraw @a "hello world"\n'
 
     compilation_unit = mc.database[function]
 
@@ -66,7 +66,7 @@ def test_string(mc: Mecha, dummy_transform: Any):
 
 def test_list(mc: Mecha, dummy_transform: Any):
     function = mc.compile(["say hello world"])
-    assert function.text == "tellraw @a 'hello world'\n"
+    assert function.text == 'tellraw @a "hello world"\n'
 
     compilation_unit = mc.database[function]
 
@@ -82,7 +82,7 @@ def test_file(mc: Mecha, dummy_transform: Any):
     input_file = TextFile("say hello world")
     function = mc.compile(input_file)
     assert function is input_file
-    assert function.text == "tellraw @a 'hello world'\n"
+    assert function.text == 'tellraw @a "hello world"\n'
 
     compilation_unit = mc.database[function]
 
@@ -97,7 +97,7 @@ def test_file(mc: Mecha, dummy_transform: Any):
 def test_ast(mc: Mecha, dummy_transform: Any):
     ast = mc.parse("say hello world")
     function = mc.compile(ast)
-    assert function.text == "tellraw @a 'hello world'\n"
+    assert function.text == 'tellraw @a "hello world"\n'
 
     compilation_unit = mc.database[function]
 
@@ -117,7 +117,7 @@ def test_data_pack(mc: Mecha, dummy_transform: Any):
     assert result is pack
 
     function = pack.functions["demo:foo"]
-    assert function.text == "tellraw @a 'hello world'\n"
+    assert function.text == 'tellraw @a "hello world"\n'
 
     compilation_unit = mc.database[function]
 
@@ -145,7 +145,7 @@ def dummy_lint(mc: Mecha):
 
 def test_lint_warn(mc: Mecha, dummy_transform: Any, dummy_lint: Any):
     function = mc.compile("say hello world")
-    assert function.text == "tellraw @a 'hello world'\n"
+    assert function.text == 'tellraw @a "hello world"\n'
 
     d = mc.database[function].diagnostics.exceptions[0]
     assert d.level == "warn"

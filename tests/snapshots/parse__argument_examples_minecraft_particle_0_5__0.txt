@@ -4,7 +4,7 @@ minecraft:particle 0 5
 ---
 falling_dust minecraft:grass_block[snowy=true]{hello: world}
 ---
-falling_dust minecraft:grass_block[snowy=true]{hello: 'world'}
+falling_dust minecraft:grass_block[snowy=true]{hello: "world"}
 ---
 <class 'mecha.ast.AstParticle'>
   location: SourceLocation(pos=0, lineno=1, colno=1)

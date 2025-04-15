@@ -19,8 +19,8 @@
 
 ```mcfunction
 say this is a test
-execute as @a[nbt={SelectedItem:{id:'minecraft:diamond',Count:64b}}] at @s run setblock ~ ~ ~ repeater[delay=3,facing=south]
-tellraw @a ['',{text:'hello',color:'red'},'not ascii: \u00b6']
+execute as @a[nbt={SelectedItem:{id:"minecraft:diamond",Count:64b}}] at @s run setblock ~ ~ ~ repeater[delay=3,facing=south]
+tellraw @a ["",{text:"hello",color:"red"},"not ascii: \u00b6"]
 say goodbye
 ```
 
@@ -28,8 +28,8 @@ say goodbye
 
 ```mcfunction
 say this is a test
-execute as @a[nbt={SelectedItem: {id: 'minecraft:diamond', Count: 64b}}] at @s run setblock ~ ~ ~ repeater[delay=3, facing=south]
-tellraw @a ['', {text: 'hello', color: 'red'}, 'not ascii: \u00b6']
+execute as @a[nbt={SelectedItem: {id: "minecraft:diamond", Count: 64b}}] at @s run setblock ~ ~ ~ repeater[delay=3, facing=south]
+tellraw @a ["", {text: "hello", color: "red"}, "not ascii: \u00b6"]
 say goodbye
 ```
 
@@ -39,12 +39,12 @@ say goodbye
 say this is a test
 
 # Random stuff
-execute as @a[nbt={SelectedItem: {id: 'minecraft:diamond', Count: 64b}}] at @s run setblock ~ ~ ~ repeater[delay=3, facing=south]
+execute as @a[nbt={SelectedItem: {id: "minecraft:diamond", Count: 64b}}] at @s run setblock ~ ~ ~ repeater[delay=3, facing=south]
 
 
 
 
-tellraw @a ['', {text: 'hello', color: 'red'}, 'not ascii: \u00b6']
+tellraw @a ["", {text: "hello", color: "red"}, "not ascii: \u00b6"]
 
 
 
@@ -58,12 +58,12 @@ say goodbye
 say this is a test
 
 # Random stuff
-execute as @a[nbt={SelectedItem:{id:'minecraft:diamond',Count:64b}}] at @s run setblock ~ ~ ~ repeater[delay=3, facing=south]
+execute as @a[nbt={SelectedItem:{id:"minecraft:diamond",Count:64b}}] at @s run setblock ~ ~ ~ repeater[delay=3, facing=south]
 
 
 
 
-tellraw @a ['',{text:'hello',color:'red'},'not ascii: \u00b6']
+tellraw @a ["",{text:"hello",color:"red"},"not ascii: \u00b6"]
 
 
 

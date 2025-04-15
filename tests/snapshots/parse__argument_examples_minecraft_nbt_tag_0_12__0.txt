@@ -4,7 +4,7 @@ minecraft:nbt_tag 0 12
 ---
 "\n"
 ---
-'\n'
+"\n"
 ---
 <class 'mecha.ast.AstNbtValue'>
   location: SourceLocation(pos=0, lineno=1, colno=1)

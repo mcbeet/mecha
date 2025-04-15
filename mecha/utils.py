@@ -181,7 +181,7 @@ class NbtQuoteHelper(QuoteHelperWithUnicode):
     def quote_string(self, value: str, quote: Optional[str] = None) -> str:
         if not quote:
             found = QUOTE_REGEX.search(value)
-            quote = ("'" if found.group() == '"' else '"') if found else "'"
+            quote = "'" if found and found.group() == '"' else '"'
         value = super().handle_quoting(value)
         return quote + value.replace(quote, "\\" + quote) + quote
 

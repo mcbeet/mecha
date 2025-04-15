@@ -35,7 +35,7 @@
           "functions": [
             {
               "function": "minecraft:set_nbt",
-              "tag": "{custom: {value: 'owo'}}"
+              "tag": "{custom: {value: \"owo\"}}"
             }
           ]
         }
@@ -59,7 +59,7 @@
           "functions": [
             {
               "function": "minecraft:set_nbt",
-              "tag": "{custom: {item: 'owo', json_text_component: '{\"function\": \"minecraft:set_nbt\", \"tag\": \"{who_cares: \\'owo\\'}\", \"text\": \"nonsense\", \"color\": \"red\"}'}}"
+              "tag": "{custom: {item: \"owo\", json_text_component: '{\"function\": \"minecraft:set_nbt\", \"tag\": \"{who_cares: \\\\\"owo\\\\\"}\", \"text\": \"nonsense\", \"color\": \"red\"}'}}"
             }
           ]
         }

@@ -4,7 +4,7 @@ minecraft:component 0 3
 ---
 [""]
 ---
-['']
+[""]
 ---
 <class 'mecha.ast.AstNbtList'>
   location: SourceLocation(pos=0, lineno=1, colno=1)
