@@ -271,7 +271,7 @@ class Serializer(Visitor):
         if UNQUOTED_COMPOUND_KEY.match(node.value):
             result.append(node.value)
         else:
-            result.append(self.quote_helper.quote_string(node.value))
+            result.append(self.nbt_quote_helper.quote_string(node.value))
 
     @rule(AstNbtCompound)
     def nbt_compound(self, node: AstNbtCompound, result: List[str]):
