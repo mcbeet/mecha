@@ -22,9 +22,9 @@ for version in pack_format_registry:
     try:
         r = requests.get(URL.format(version=version.id))
         r.raise_for_status()
-        path = files("mecha.resources").joinpath(f"{version_name}.json")
+        path = str(files("mecha.resources").joinpath(f"{version_name}.json"))
 
-        with path.open("r") as f:
+        with open(path, "w") as f:
             f.write(r.text)
     except BaseException as e:
         print(f"Failed to download command tree for version {version_name}.")
