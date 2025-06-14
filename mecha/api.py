@@ -439,7 +439,7 @@ class Mecha:
                             filename or resource_location,
                         )
                 except Exception:
-                    raise
+                    pass
             return ast
 
     @overload
