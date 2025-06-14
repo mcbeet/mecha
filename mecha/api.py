@@ -390,7 +390,7 @@ class Mecha:
             known_hash = self.cache.json.get("resource_location_hashes", {}).get(
                 resource_location
             )
-            if known_hash != hash and known_hash is not None:
+            if known_hash != hash:
                 changed = True
             self.cache.json.setdefault("resource_location_hashes", {})[
                 resource_location
@@ -420,6 +420,8 @@ class Mecha:
         except InvalidSyntax as exc:
             if self.cache and filename and cache_miss:
                 self.cache.invalidate_changes(self.directory / filename)
+            if self.cache and (resource_location and not filename) and cache_miss:
+                self.cache.json.get("resource_location_hashes", {}).pop(resource_location, None)
             d = Diagnostic(
                 level="error",
                 message=str(exc),
