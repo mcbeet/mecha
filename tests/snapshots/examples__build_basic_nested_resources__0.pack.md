@@ -7,7 +7,14 @@
 ```json
 {
   "pack": {
-    "pack_format": 81,
+    "min_format": [
+      88,
+      0
+    ],
+    "max_format": [
+      88,
+      0
+    ],
     "description": ""
   }
 }
@@ -59,7 +66,14 @@ say world
 ```json
 {
   "pack": {
-    "pack_format": 64,
+    "min_format": [
+      69,
+      0
+    ],
+    "max_format": [
+      69,
+      0
+    ],
     "description": ""
   }
 }
