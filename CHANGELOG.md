@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.100.0 (2025-12-06)
+
+### Feature
+
+* Update command tree to 1.21.10 ([#316](https://github.com/mcbeet/mecha/issues/316)) ([`f20584d`](https://github.com/mcbeet/mecha/commit/f20584d20d35da25ab8706e0af19404d844a36af))
+
 ## v0.99.0 (2025-07-18)
 
 ### Feature
