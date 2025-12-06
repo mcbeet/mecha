@@ -170,7 +170,7 @@ gamerule max_block_modifications 1000
 gamerule global_sound_events false
 gamerule lava_source_conversion true
 gamerule mob_explosion_drop_decay true
-gamerule max_snow_accumulation_height 10
+gamerule max_snow_accumulation_height 8
 gamerule tnt_explosion_drop_decay true
 gamerule water_source_conversion true
 clone ~ ~ ~ ~10 ~10 ~10 0 0 0 masked
