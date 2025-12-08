@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> This repository is archived. Development moved to the [`beet` monorepo](https://github.com/mcbeet/beet/tree/beta/packages/mecha).
+
+---
+
 <img align="right" src="https://raw.githubusercontent.com/mcbeet/mecha/main/logo.png" alt="logo" width="76">
 
 # Mecha
